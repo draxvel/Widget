@@ -8,7 +8,7 @@ import android.widget.RemoteViews
 /**
  * Implementation of App Widget functionality.
  */
-class AppWidget4to1 : AppWidgetProvider() {
+class AppWidget4x1 : AppWidgetProvider() {
 
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
         // There may be multiple widgets active, so update all of them
@@ -32,9 +32,9 @@ class AppWidget4to1 : AppWidgetProvider() {
             appWidgetId: Int
         ) {
 
-            val widgetText = "small"
+            val widgetText = context.getString(R.string.appwidget4x1_text)
             // Construct the RemoteViews object
-            val views = RemoteViews(context.packageName, R.layout.app_widget4to1)
+            val views = RemoteViews(context.packageName, R.layout.app_widget4x1)
             views.setTextViewText(R.id.appwidget_text, widgetText)
 
             // Instruct the widget manager to update the widget

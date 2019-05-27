@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Widget</string>
-    <string name="appwidget_text">BIG</string>
+    <string name="appwidget4x1_text">medium</string>
+    <string name="appwidget5x1_text">big</string>
+
     <string name="add_widget">Add widget</string>
 </resources>
