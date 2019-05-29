@@ -2,6 +2,7 @@ package com.taboola.android.widget
 
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
+import android.content.ComponentName
 import android.content.Context
 import android.widget.RemoteViews
 
@@ -27,10 +28,19 @@ class AppWidget4x1 : AppWidgetProvider() {
 
     companion object {
 
+        private var wasFirstUpdate: Boolean = false
+
         internal fun updateAppWidget(
             context: Context, appWidgetManager: AppWidgetManager,
             appWidgetId: Int
         ) {
+
+            if(!wasFirstUpdate) {
+                //disable items in user widget list
+                context.disableWidget(ComponentName(context, AppWidget4x1::class.java))
+                context.disableWidget(ComponentName(context, AppWidget5x1::class.java))
+                wasFirstUpdate = true
+            }
 
             val widgetText = context.getString(R.string.appwidget4x1_text)
             // Construct the RemoteViews object
