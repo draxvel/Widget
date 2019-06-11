@@ -16,6 +16,7 @@
         <receiver android:name=".AppWidget4x1">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="com.taboola.android.widget.action.UPDATE_CLICK"/>
             </intent-filter>
 
             <meta-data

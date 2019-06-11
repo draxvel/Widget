@@ -1,10 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/relative_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="@dimen/widget_margin"
                 android:background="#09C">
 
-    <TextView
+    <Button
             android:id="@+id/appwidget_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
