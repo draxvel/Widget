@@ -16,16 +16,19 @@ class AppWidget4x1 : AppWidgetProvider() {
 
     private var wasFirstUpdate: Boolean = false
 
-    private val ACTION_UPDATE_CLICK = "com.taboola.android.widget.action.UPDATE_CLICK"
+    private val locationManager: LocationManager = LocationManager()
 
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
         Log.d("draxvel", "in onUpdate")
 
         if(!wasFirstUpdate) {
             //disable items in user widget list
-           // context.disableWidget(ComponentName(context, AppWidget4x1::class.java))
-            //context.disableWidget(ComponentName(context, AppWidget5x1::class.java))
+//            context.disableWidget(ComponentName(context, AppWidget4x1::class.java))
+            context.disableWidget(ComponentName(context, AppWidget5x1::class.java))
+            Log.d("draxvel", "in disableWidget")
+
             wasFirstUpdate = true
+            locationManager.requestUpdates(context)
         }
 
         // There may be multiple widgets active, so update all of them
@@ -40,6 +43,7 @@ class AppWidget4x1 : AppWidgetProvider() {
 
     override fun onDisabled(context: Context) {
         // Enter relevant functionality for when the last widget is disabled
+        locationManager.removeUpdates()
     }
 
     private fun getPendingSelfIntent(context: Context, action: String): PendingIntent {
@@ -53,7 +57,26 @@ class AppWidget4x1 : AppWidgetProvider() {
         // Get the layout for the App Widget and attach an on-click listener
         // to the button
         val views: RemoteViews = RemoteViews(context.packageName, R.layout.app_widget4x1)
-            .apply { setOnClickPendingIntent(R.id.relative_layout, getPendingSelfIntent(context, ACTION_UPDATE_CLICK))
+            .apply { setOnClickPendingIntent(R.id.relative_layout, getPendingSelfIntent(context, AppWidgetManager.ACTION_APPWIDGET_UPDATE))
+        }
+
+        locationManager.getLastKnownLocation()?.let {
+
+            Log.d("draxvel", "latitude: "+it.latitude)
+            Log.d("draxvel", "latitude: "+it.longitude)
+
+//            WeatherPresenter().getCurrentTemperature(iGetCurrentTemperatureCallBack = object : WeatherPresenter.IGetCurrentTemperatureCallBack{
+//
+//                override fun onGet(str: String) {
+//                    Log.d("draxvel", str)
+//                    views.setTextViewText(R.id.appwidget_text, str)
+//                    appWidgetManager.updateAppWidget(appWidgetId, views)
+//                }
+//
+//                override fun onError() {
+//                    Log.d("draxvel", "in onError")
+//                }
+//            }, location = it)
         }
 
         // Instruct the widget manager to update the widget
@@ -75,14 +98,13 @@ class AppWidget4x1 : AppWidgetProvider() {
         onUpdate(context, appWidgetManager, appWidgetIds)
     }
 
-    override fun onReceive(context: Context?, intent: Intent?) {
+    override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
 
-        Log.d("draxvel", "in onReceive action "+intent!!.action)
+        Log.d("draxvel", "in onReceive action "+intent.action)
 
-
-        if (ACTION_UPDATE_CLICK == intent.action) {
-            //callOnUpdate(context!!)
+        if(intent.action == "android.appwidget.action.APPWIDGET_UPDATE") {
+            callOnUpdate(context)
         }
     }
 }
