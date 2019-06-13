@@ -8,6 +8,8 @@ import android.util.Log
 import android.app.PendingIntent
 import android.content.Intent
 import android.widget.RemoteViews
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Implementation of App Widget functionality.
@@ -57,7 +59,7 @@ class AppWidget4x1 : AppWidgetProvider() {
         // Get the layout for the App Widget and attach an on-click listener
         // to the button
         val views: RemoteViews = RemoteViews(context.packageName, R.layout.app_widget4x1)
-            .apply { setOnClickPendingIntent(R.id.relative_layout, getPendingSelfIntent(context, AppWidgetManager.ACTION_APPWIDGET_UPDATE))
+            .apply { setOnClickPendingIntent(R.id.section1_text, getPendingSelfIntent(context, AppWidgetManager.ACTION_APPWIDGET_UPDATE))
         }
 
         locationManager.getLastKnownLocation()?.let {
@@ -78,6 +80,8 @@ class AppWidget4x1 : AppWidgetProvider() {
 //                }
 //            }, location = it)
         }
+
+        views.setTextViewText(R.id.section2_text, SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Date()))
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views)
