@@ -5,18 +5,95 @@
                 android:padding="@dimen/widget_margin"
                 android:background="#09C">
 
-    <Button
-            android:id="@+id/appwidget_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="@string/appwidget4x1_text"
-            android:textColor="#ffffff"
-            android:textSize="24sp"
-            android:textStyle="bold|italic"
-            android:layout_margin="8dp"
-            android:contentDescription="@string/appwidget4x1_text"
-            android:background="#09C"/>
+    <LinearLayout
+            android:weightSum="4"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:layout_weight="1"
+                android:id="@+id/section1_text"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="section1_text"
+                android:textColor="#ffffff"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
+                android:layout_margin="8dp"
+                android:background="#09C"/>
+
+        <LinearLayout
+                android:id="@+id/widget_horizontal_white_bar"
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="#FFFFFF"
+                android:orientation="vertical" >
+        </LinearLayout>
+
+        <TextView
+                android:layout_weight="1"
+                android:id="@+id/section2_text"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="section2_text"
+                android:textColor="#ffffff"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
+                android:layout_margin="8dp"
+                android:contentDescription="@string/appwidget4x1_text"
+                android:background="#09C"/>
+
+        <LinearLayout
+                android:id="@+id/widget_horizontal_white_bar2"
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="#FFFFFF"
+                android:orientation="vertical" >
+        </LinearLayout>
+
+        <TextView
+                android:layout_weight="1"
+                android:id="@+id/section3_text"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="section3_text"
+                android:textColor="#ffffff"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
+                android:layout_margin="8dp"
+                android:contentDescription="@string/appwidget4x1_text"
+                android:background="#09C"/>
+
+        <LinearLayout
+                android:id="@+id/widget_horizontal_white_bar3"
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="#FFFFFF"
+                android:orientation="vertical" >
+        </LinearLayout>
+
+        <TextView
+                android:layout_weight="1"
+                android:id="@+id/section4_text"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="section4_text"
+                android:textColor="#ffffff"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
+                android:layout_margin="8dp"
+                android:contentDescription="@string/appwidget4x1_text"
+                android:background="#09C"/>
+
+        <LinearLayout
+                android:id="@+id/widget_horizontal_white_bar4"
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="#FFFFFF"
+                android:orientation="vertical" >
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
