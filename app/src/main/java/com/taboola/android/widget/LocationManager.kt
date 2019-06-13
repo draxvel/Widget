@@ -45,9 +45,12 @@ class LocationManager {
     fun requestUpdates(context: Context) {
         Log.d("draxvel", "in requestUpdates")
 
-        locationManager = context.getSystemService(LOCATION_SERVICE) as LocationManager
-        mCurrentLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+        //locationManager = context.getSystemService(LOCATION_SERVICE) as LocationManager
+        //mCurrentLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
+        mFusedLocationClient.lastLocation.addOnSuccessListener {
+            mCurrentLocation = it
+        }
         mFusedLocationClient.requestLocationUpdates(locationRequest,
             locationCallback, Looper.myLooper());
     }
@@ -61,6 +64,10 @@ class LocationManager {
     @SuppressLint("MissingPermission")
     fun getLastKnownLocation(): Location? {
         Log.d("draxvel", "in getLastKnownLocation")
-        return mCurrentLocation
+        val targetLocation = Location("")//provider name is unnecessary
+        targetLocation.latitude = 49.80//your coords of course
+        targetLocation.longitude = 24.02
+        return targetLocation
+//        return mCurrentLocation
     }
 }

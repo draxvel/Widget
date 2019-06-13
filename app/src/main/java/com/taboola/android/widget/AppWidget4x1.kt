@@ -67,18 +67,18 @@ class AppWidget4x1 : AppWidgetProvider() {
             Log.d("draxvel", "latitude: "+it.latitude)
             Log.d("draxvel", "latitude: "+it.longitude)
 
-//            WeatherPresenter().getCurrentTemperature(iGetCurrentTemperatureCallBack = object : WeatherPresenter.IGetCurrentTemperatureCallBack{
-//
-//                override fun onGet(str: String) {
-//                    Log.d("draxvel", str)
-//                    views.setTextViewText(R.id.appwidget_text, str)
-//                    appWidgetManager.updateAppWidget(appWidgetId, views)
-//                }
-//
-//                override fun onError() {
-//                    Log.d("draxvel", "in onError")
-//                }
-//            }, location = it)
+            WeatherPresenter().getCurrentTemperature(iGetCurrentTemperatureCallBack = object : WeatherPresenter.IGetCurrentTemperatureCallBack{
+
+                override fun onGet(str: String) {
+                    Log.d("draxvel", str)
+                    views.setTextViewText(R.id.section1_text, str)
+                    appWidgetManager.updateAppWidget(appWidgetId, views)
+                }
+
+                override fun onError() {
+                    Log.d("draxvel", "in onError")
+                }
+            }, location = it)
         }
 
         views.setTextViewText(R.id.section2_text, SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Date()))
